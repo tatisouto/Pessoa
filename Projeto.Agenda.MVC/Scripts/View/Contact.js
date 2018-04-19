@@ -122,8 +122,7 @@
                                         tr.remove();
                                         bootbox.alert({
                                             message: "Telefone excluído com sucesso",
-                                            callback: function () {
-                                                //window.location = "/Contact/Edit?id=" + id;
+                                            callback: function () {                                                
                                                 return true;
                                             }
                                         })
