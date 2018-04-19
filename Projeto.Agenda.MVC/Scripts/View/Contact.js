@@ -2,9 +2,9 @@
 
     loadDivAddress();
 
-    isNumber($('input[id="Phone"]')); 
+    isNumber($('input[id="Phone"]'));
 
-    isNumber($('input[id="PostalCode"]')); 
+    isNumber($('input[id="PostalCode"]'));
 
     $('#addAddress').click(function () {
         if ($('#divAddress').hasClass('hide')) {
@@ -60,7 +60,7 @@
                         return true;
                     }
                 })
-            }            
+            }
         }
 
     });
@@ -80,7 +80,7 @@
         }
 
     });
-        
+
 });
 
 
@@ -103,9 +103,34 @@
             callback: function (result) {
                 if (result == true) {
                     var tr = $(handler).closest('tr');
-
                     tr.fadeOut(400, function () {
-                        tr.remove();
+
+                        if ($('#Id').val() == "") {
+                            tr.remove();
+                        }
+                        else {
+
+                            var id = $(this).find("td:nth-child(4)").html();
+
+                            $.ajax({
+                                type: "GET",
+                                url: "/Contact/DeletePhone?id=" + id,
+                                dataType: "json",
+                                contentType: "application/json",
+                                success: function (data) {
+                                    if (data.success == true) {
+                                        tr.remove();
+                                        bootbox.alert({
+                                            message: "Telefone excluído com sucesso",
+                                            callback: function () {
+                                                //window.location = "/Contact/Edit?id=" + id;
+                                                return true;
+                                            }
+                                        })
+                                    }
+                                }
+                            });
+                        }
                     });
                     return true;
                 };
@@ -228,10 +253,6 @@
                     }
                 });
             }
-
-
-
-
         }
         else {
             bootbox.alert({
@@ -258,25 +279,26 @@
     }
 
     isNumber = function (fields) {
-        
-        $(fields).unbind('keyup').bind('keyup', function (e) { 
 
-            var thisVal = $(this).val(); 
+        $(fields).unbind('keyup').bind('keyup', function (e) {
+
+            var thisVal = $(this).val();
             var tempVal = "";
 
             for (var i = 0; i < thisVal.length; i++) {
-                if (RegExp(/^[0-9]$/).test(thisVal.charAt(i))) { 
-                    tempVal += thisVal.charAt(i); 
+                if (RegExp(/^[0-9]$/).test(thisVal.charAt(i))) {
+                    tempVal += thisVal.charAt(i);
 
                     if (e.keyCode == 8) {
-                        tempVal = thisVal.substr(0, i); 
+                        tempVal = thisVal.substr(0, i);
                     }
                 }
             }
-            $(this).val(tempVal); 
+            $(this).val(tempVal);
         });
     }
-   
+
+
 
 })(jQuery);
 

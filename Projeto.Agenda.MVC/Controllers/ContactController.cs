@@ -148,28 +148,10 @@ namespace Projeto.Agenda.MVC.Controllers
                     _addressApp.Add(addressDomain);
                 };
                 #endregion
-
-
-                var phones = _phoneApp.GetPhoneByIdContact(objContact.Id);
-
-                foreach (var ph in phones)
-                    _phoneApp.Remove(ph);
-
-                
-
+                                
                 foreach (var item in objContact.Phone)
-                {
-                    var PhoneViewModel = new PhoneViewModel()
-                    {
-                        ContactId = objContact.Id,
-                        ClassificationId = item.ClassificationId,
-                        Number = item.Number
-                    };
+                    item.ContactId = objContact.Id;
 
-                    var phoneDomain = Mapper.Map<PhoneViewModel, Phone>(PhoneViewModel);
-                    _phoneApp.Add(phoneDomain);
-                                       
-                }                
 
                 var contactDomain = Mapper.Map<ContactViewModel, Contact>(objContact);
                 _contactApp.Update(contactDomain);
@@ -184,7 +166,7 @@ namespace Projeto.Agenda.MVC.Controllers
             }
         }
 
-
+        // GET: Contact/Delete/5
         public ActionResult Delete(Guid id)
         {
             try
@@ -248,6 +230,26 @@ namespace Projeto.Agenda.MVC.Controllers
 
                 return View();
             }
+
+        }
+
+
+        public ActionResult DeletePhone(Guid id)
+        {
+            try
+            {
+                var phones = _phoneApp.GetById(id);
+
+                if (phones != null)
+                    _phoneApp.Remove(phones);
+
+                return Json(new { success = true, responseText = "telefone deletado com sucesso." }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+
 
         }
     }
