@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Projeto.Agenda.MVC.ViewModel.ContactViewModel>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+
+<p>
+    @Html.ActionLink("Novo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Nome
+        </th>
+        <th>
+            SobreNome
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Empresa
+        </th>
+        <th>
+            Telefone
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Company)
+            </td>
+            <td>
+                @if (item.Phone.Any())
+                {
+                    @Html.DisplayFor(modelItem => item.Phone.FirstOrDefault().Number);
+                }
+            </td>
+
+
+            <td>
+                <a href='@Url.Action("Edit", "Contact", new { id = item.Id })' class="btn btn-info btn-sm">
+                    <span class="glyphicon glyphicon-edit" title="Editar"></span>
+                </a> |
+                <a href='@Url.Action("Details", "Contact", new { id = item.Id })' class="btn btn-info btn-sm">
+                    <span class="glyphicon glyphicon-book" title="Detalhes"></span>
+                </a>
+                |
+
+
+                <a href='@Url.Action("Delete", "Contact", new { id = item.Id })' class="btn btn-danger btn-sm">
+
+                    <span class="glyphicon glyphicon-trash" title="Excluir"></span>
+                </a>
+            </td>
+        </tr>
+    }
+
+</table>

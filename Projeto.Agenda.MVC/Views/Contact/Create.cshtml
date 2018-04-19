@@ -1,0 +1,149 @@
+﻿@model Projeto.Agenda.MVC.ViewModel.ContactViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>
+
+    <span class="glyphicon glyphicon-plus"></span>
+    Contato
+</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <form id="createContactForm">
+        <div class="form-horizontal">
+            <hr />
+            @Html.HiddenFor(model => model.Id)
+            <div class="form-group">
+                <label class="control-label col-md-2">Nome</label>
+                <div class="col-md-10">
+                    <input id="FirstName" name="FirstName" class="form-control" minlength="2" type="text" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Sobrenome</label>
+                <div class="col-md-10">
+                    <input id="LastName" name="LastName" class="form-control" minlength="2" type="text">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">E-mail</label>
+                <div class="col-md-10">
+                    <input id="Email" name="Email" class="form-control" minlength="2" type="text">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Empresa</label>
+                <div class="col-md-10">
+                    <input id="Company" name="Company" class="form-control" minlength="2" type="text">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Telefone</label>
+
+                <div class="col-md-2">
+                    @Html.DropDownList("optClassification", ViewBag.Classification as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                </div>
+                <div class="col-md-3">
+                    <input id="Phone" name="Phone" class="form-control" minlength="8" maxlength="11" type="text">
+                </div>
+                <div class="col-md-3">
+                    <button type="button" class="btn btn-info btn-sm" id="addPhone">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Telefones</label>
+                <div class="table-responsive col-md-10">
+                    <table id="tablePhone" class="table table-hover table-bordered">
+
+                        <tread>
+                            <tr>
+                                <th width="200px">Tipo</th>
+                                <th width="200px">Telefone</th>
+                                <th class="actions" width="50px">Ações</th>
+                                <th style="display:none">Id</th>
+
+                            </tr>
+                        </tread>
+                        <tbody></tbody>
+
+                    </table>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Endereço</label>
+                <div class="col-md-3">
+                    <button type="button" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="right" title="Clique para adicionar" id="addAddress">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+
+                    <button type="button" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Clique para remover" id="removeAddress">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="divAddress" style="display:none">
+                @Html.HiddenFor(model => model.Address.Id, new { @id = "IdAddress" })
+                <div class="form-group">
+                    <label class="control-label col-md-2">Rua</label>
+                    <div class="col-md-10">
+                        <input id="StreetAddress" name="StreetAddress" class="form-control" minlength="4" type="text">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Cidade</label>
+                    <div class="col-md-10">
+                        <input id="City" name="City" class="form-control" minlength="4" type="text">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Estado</label>
+                    <div class="col-md-10">
+                        <input id="State" name="State" class="form-control" minlength="2" type="text">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">CEP</label>
+                    <div class="col-md-10">
+                        <input id="PostalCode" name="PostalCode" class="form-control" maxlength="8" type="text">
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="button" value="Salvar" class="btn btn-success" onclick="contactSaveorUpdate()" />
+                </div>
+            </div>
+        </div>
+    </form>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/bootbox.min.js"></script>
+<script src="~/Scripts/View/Contact.js"></script>
+
+
+
+
+

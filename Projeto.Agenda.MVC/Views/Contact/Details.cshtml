@@ -1,0 +1,168 @@
+﻿@model Projeto.Agenda.MVC.ViewModel.ContactViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Visualizar</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal disabled active" >
+        @*<h4>ContactViewModel</h4>*@
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Company, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Company, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Company, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="display:none">
+            <label class="control-label col-md-2">Telefone</label>
+
+            <div class="col-md-2">
+                @Html.DropDownList("optClassification", ViewBag.Classification as IEnumerable<SelectListItem>, new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                <input id="Phone" name="Phone" class="form-control" minlength="8" maxlength="11" type="text">
+            </div>
+            <div class="col-md-3">
+                <button type="button" class="btn btn-info btn-sm" id="addPhone">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Telefones</label>
+            <div class="table-responsive col-md-10">
+                <table id="tablePhone" class="table table-hover table-bordered">
+
+                    <tread>
+                        <tr>
+                            <th width="200px">Tipo</th>
+                            <th width="200px">Telefone</th>
+                            <th class="actions" style="display:none" width="50px">Ações</th>
+                            <th style="display:none">Id</th>
+
+                        </tr>
+
+                    </tread>
+                    <tbody>
+
+                        @foreach (var item in Model.Phone)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Classification.Description)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Number)
+                                </td>
+                                <td style="display:none">
+                                    <div class="col-md-3" >
+                                        <button class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="right" title="Remover" onclick="removeTableRow(this)" type="button"><span class="glyphicon glyphicon-trash"></span></button>
+                                    </div>
+                                </td>
+                                <td style="display:none">
+                                    @Html.DisplayFor(modelItem => item.Id)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+
+        <div class="form-group" style="display:none">
+            <label class="control-label col-md-2">Endereço</label>
+            <div class="col-md-3">
+                <button type="button" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="right" title="Clique para adicionar" id="addAddress">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+
+                <button type="button" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Clique para remover" id="removeAddress">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
+            </div>
+        </div>
+
+        <div id="divAddress" style="display:none">
+            <div class="form-group">
+                <label class="control-label col-md-2">Logradouro</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Address.StreetAddress, new { htmlAttributes = new { @class = "form-control", @id = "StreetAddress" } })
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Cidade</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Address.City, new { htmlAttributes = new { @class = "form-control", @id = "City" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Estado</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Address.State, new { htmlAttributes = new { @class = "form-control", @id = "State" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">CEP</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Address.PostalCode, new { htmlAttributes = new { @class = "form-control", @id = "PostalCode" } })
+                </div>
+            </div>
+
+        </div>
+
+        @*<div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Salvar" class="btn btn-success" id="Save" />
+            </div>
+        </div>*@
+    </div>
+}
+
+<div>
+
+    @Html.ActionLink("Back to List", "List")
+</div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/bootbox.min.js"></script>
+<script src="~/Scripts/View/Contact.js"></script>
