@@ -16,7 +16,7 @@ namespace Projeto.Agenda.MVC
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Agenda", action = "List", id = UrlParameter.Optional }
+                defaults: new { controller = "Pessoa", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

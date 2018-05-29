@@ -11,7 +11,7 @@ namespace Projeto.Agenda.Infra.Data.Repositories
 {
     public class RepositoryBase<TEntity> : IDisposable, IRepositoryBase<TEntity> where TEntity : class
     {
-        protected ProjetoAgendaContext Db = new ProjetoAgendaContext();
+        protected ProjetoCadastroContext Db = new ProjetoCadastroContext();
 
         public void Add(TEntity obj)
         {
@@ -37,6 +37,7 @@ namespace Projeto.Agenda.Infra.Data.Repositories
 
         public void Remove(TEntity obj)
         {
+            
             Db.Set<TEntity>().Remove(obj);
             Db.SaveChanges();
         }

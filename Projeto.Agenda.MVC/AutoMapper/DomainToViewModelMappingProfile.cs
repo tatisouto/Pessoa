@@ -24,10 +24,11 @@ namespace Projeto.Agenda.MVC.AutoMapper
 
         private void ConfigureMappings()
         {
-            CreateMap<ContactViewModel, Contact>().ReverseMap();
-            CreateMap<AddressViewModel, Address>().ReverseMap();
-            CreateMap<ClassificationViewModel, Classification>().ReverseMap();
-            CreateMap<PhoneViewModel, Phone>().ReverseMap();
+            CreateMap<PessoaViewModel, Pessoa>().ReverseMap();
+            //CreateMap<ContactViewModel, Contact>().ReverseMap();
+            //CreateMap<AddressViewModel, Address>().ReverseMap();
+            //CreateMap<ClassificationViewModel, Classification>().ReverseMap();
+            //CreateMap<PhoneViewModel, Phone>().ReverseMap();
 
         }
 

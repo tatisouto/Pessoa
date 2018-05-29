@@ -2,8 +2,6 @@
 using Ninject.Web.Common;
 using Ninject.Web.Common.WebHost;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using Ninject;
 using Projeto.Agenda.Application.Interface;
@@ -55,23 +53,24 @@ namespace Projeto.Agenda.MVC.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind(typeof(IAppServiceBase<>)).To(typeof(AppServiceBase<>));
-            kernel.Bind<IContactAppService>().To<ContactAppService>();
-            kernel.Bind<IAddressAppService>().To<AddressAppService>();
-            kernel.Bind<IClassificationAppService>().To<ClassificationAppService>();
-            kernel.Bind<IPhoneAppService>().To<PhoneAppService>();
+            //kernel.Bind<IContactAppService>().To<ContactAppService>();
+            //kernel.Bind<IAddressAppService>().To<AddressAppService>();
+            //kernel.Bind<IClassificationAppService>().To<ClassificationAppService>();
+            //kernel.Bind<IPhoneAppService>().To<PhoneAppService>();
+            kernel.Bind<IPessoaAppService>().To<PessoaAppService>();
 
             kernel.Bind(typeof(IServiceBase<>)).To(typeof(ServiceBase<>));
-            kernel.Bind<IContactService>().To<ContactService>();
-            kernel.Bind<IAddressService>().To<AddressService>();
-            kernel.Bind<IClassificationService>().To<ClassificationService>();
-            kernel.Bind<IPhoneService>().To<PhoneService>();
+            kernel.Bind<IPessoaService>().To<PessoaService>();
+            //kernel.Bind<IAddressService>().To<AddressService>();
+            //kernel.Bind<IClassificationService>().To<ClassificationService>();
+            //kernel.Bind<IPhoneService>().To<PhoneService>();
 
 
             kernel.Bind(typeof(IRepositoryBase<>)).To(typeof(RepositoryBase<>));
-            kernel.Bind<IContactRepository>().To<ContactRepository>();
-            kernel.Bind<IAddressRepository>().To<AddressRepository>();
-            kernel.Bind<IClassificationRepository>().To<ClassificationRepository>();
-            kernel.Bind<IPhoneRepository>().To<PhoneRepository>();
+            kernel.Bind<IPessoaRepository>().To<PessoaRepository>();
+            //kernel.Bind<IAddressRepository>().To<AddressRepository>();
+            //kernel.Bind<IClassificationRepository>().To<ClassificationRepository>();
+            //kernel.Bind<IPhoneRepository>().To<PhoneRepository>();
 
         }
 

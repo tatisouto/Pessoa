@@ -7,13 +7,13 @@ namespace Projeto.Agenda.Infra.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Create : IMigrationMetadata
+    public sealed partial class CreateDB : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Create));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(CreateDB));
         
         string IMigrationMetadata.Id
         {
-            get { return "201804181316507_Create"; }
+            get { return "201805252048521_CreateDB"; }
         }
         
         string IMigrationMetadata.Source

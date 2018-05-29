@@ -41,16 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddressAppService.cs" />
     <Compile Include="AppServiceBase.cs" />
-    <Compile Include="ClassificationAppService.cs" />
-    <Compile Include="ContactAppService.cs" />
-    <Compile Include="Interface\IAddressAppService.cs" />
     <Compile Include="Interface\IAppServiceBase.cs" />
-    <Compile Include="Interface\IClassificationAppService.cs" />
-    <Compile Include="Interface\IContactAppService.cs" />
-    <Compile Include="Interface\IPhoneAppService.cs" />
-    <Compile Include="PhoneAppService.cs" />
+    <Compile Include="Interface\IPessoaAppService.cs" />
+    <Compile Include="PessoaAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

@@ -7,20 +7,21 @@ using System.Linq;
 
 namespace Projeto.Agenda.Infra.Data.Context
 {
-    public class ProjetoAgendaContext : DbContext
+    public class ProjetoCadastroContext : DbContext
     {
-        public ProjetoAgendaContext() 
-            : base("BDAgenda")
+        public ProjetoCadastroContext()
+            : base("BDPessoa")
         {
             Configuration.LazyLoadingEnabled = false;
             Configuration.ProxyCreationEnabled = false;
-            Database.SetInitializer<ProjetoAgendaContext>(null);
+            Database.SetInitializer<ProjetoCadastroContext>(null);
         }
 
-        public DbSet<Address> Addresses { get; set; }
-        public DbSet<Contact> Contacts { get; set; }
-        public DbSet<Phone> Phones { get; set; }
-        public DbSet<Classification> Classification { get; set; }
+        public DbSet<Pessoa> Pessoas { get; set; }
+        //public DbSet<Address> Addresses { get; set; }
+        //public DbSet<Contact> Contacts { get; set; }
+        //public DbSet<Phone> Phones { get; set; }
+        //public DbSet<Classification> Classification { get; set; }
 
 
 
@@ -40,11 +41,12 @@ namespace Projeto.Agenda.Infra.Data.Context
             modelBuilder.Properties<string>()
                 .Configure(p => p.HasMaxLength(100));
 
-            modelBuilder.Configurations.Add(new AddressConfiguration());
-            modelBuilder.Configurations.Add(new ClassificationConfiguration());
-            modelBuilder.Configurations.Add(new ContactConfiguration());
-            modelBuilder.Configurations.Add(new PhoneConfiguration());
-            
+            modelBuilder.Configurations.Add(new PessoaConfiguration());
+            //modelBuilder.Configurations.Add(new AddressConfiguration());
+            //modelBuilder.Configurations.Add(new ClassificationConfiguration());
+            //modelBuilder.Configurations.Add(new ContactConfiguration());
+            //modelBuilder.Configurations.Add(new PhoneConfiguration());
+
 
         }
 
@@ -55,7 +57,7 @@ namespace Projeto.Agenda.Infra.Data.Context
             {
                 if (entry.State == EntityState.Added)
                 {
-                    entry.Property("DtCreate").CurrentValue = DateTime.Now;
+                    entry.Property("DtCreate").CurrentValue = DateTimeOffset.Now;
                 }
 
                 if (entry.State == EntityState.Modified)

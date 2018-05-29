@@ -49,20 +49,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\ProjetoAgendaContext.cs" />
-    <Compile Include="EntityConfig\AddressConfiguration.cs" />
-    <Compile Include="EntityConfig\ClassificationConfiguration.cs" />
-    <Compile Include="EntityConfig\ContactConfiguration.cs" />
-    <Compile Include="EntityConfig\PhoneConfiguration.cs" />
-    <Compile Include="Migrations\201804181316507_Create.cs" />
-    <Compile Include="Migrations\201804181316507_Create.Designer.cs">
-      <DependentUpon>201804181316507_Create.cs</DependentUpon>
+    <Compile Include="EntityConfig\PessoaConfiguration.cs" />
+    <Compile Include="Migrations\201805252048521_CreateDB.cs" />
+    <Compile Include="Migrations\201805252048521_CreateDB.Designer.cs">
+      <DependentUpon>201805252048521_CreateDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\AddressRepository.cs" />
-    <Compile Include="Repositories\ClassificationRepository.cs" />
-    <Compile Include="Repositories\ContactRepository.cs" />
-    <Compile Include="Repositories\PhoneRepository.cs" />
+    <Compile Include="Repositories\PessoaRepository.cs" />
     <Compile Include="Repositories\RespositoryBase.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -78,8 +72,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201804181316507_Create.resx">
-      <DependentUpon>201804181316507_Create.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805252048521_CreateDB.resx">
+      <DependentUpon>201805252048521_CreateDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

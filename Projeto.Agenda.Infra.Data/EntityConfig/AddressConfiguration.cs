@@ -1,10 +1,5 @@
 ﻿using Projeto.Agenda.Domain.Entities;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Projeto.Agenda.Infra.Data.EntityConfig
 {
